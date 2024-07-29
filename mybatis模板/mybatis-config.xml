@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--加载外部配置文件-->
+    <properties resource="jdbc.properties"></properties>
+
+    <!--开启驼峰映射：把数据表中带有下划线的字段，变为java命名方式-->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!--设置诫命：把长名字变为短名字-->
+    <typeAliases>
+<!--        <typeAlias type="com.jensen.pojo.User" alias="User"></typeAlias>-->
+        <package name="com.jensen.pojo"/>
+    </typeAliases>
+
+    <!--配置数据源（数据库连接）-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+
+    <!--配置映射文件关联-->
+    <mappers>
+<!--        <mapper resource="com/jensen/dao/UserMapper.xml"/>-->
+        <package name="com.jensen.dao"/>
+    </mappers>
+</configuration>

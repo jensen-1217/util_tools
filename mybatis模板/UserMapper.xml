@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--利用namespace属性，绑定当前映射文件和Mapper接口映射关联-->
+<mapper namespace="com.jensen.dao.UserMapper">
+
+<!--SQL查询语句-->
+    <select id="findAllUser" resultType="User">
+        select id, user_name, birthday, sex, address from user
+    </select>
+
+    <select id="findUser" resultType="User">
+        select id, user_name, birthday, sex, address from user where id=#{id}
+    </select>
+
+    <insert id="addUser">
+        insert into user(user_name, birthday, sex, address)value(#{username},#{birthday},#{sex},#{address})
+    </insert>
+
+    <update id="updateUser">
+        update user set user_name = #{username},sex=#{sex},address=#{address} where id=#{id}
+    </update>
+
+    <delete id="deleteUserById">
+        delete from user where id=#{id};
+    </delete>
+
+</mapper>
